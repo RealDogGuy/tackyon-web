@@ -16,6 +16,8 @@ import Login, { type ClientLoginFlow, type OidcNativeFlow } from "../../../Login
 import { messageForConnectionError, messageForLoginError } from "../../../utils/ErrorUtils";
 import AutoDiscoveryUtils from "../../../utils/AutoDiscoveryUtils";
 import AuthPage from "../../views/auth/AuthPage";
+import AsciiFishBackground from "../../views/auth/AsciiFishBackground";
+import LanguageSelector from "../../views/auth/LanguageSelector";
 import PlatformPeg from "../../../PlatformPeg";
 import SettingsStore from "../../../settings/SettingsStore";
 import { UIFeature } from "../../../settings/UIFeature";
@@ -26,7 +28,6 @@ import Spinner from "../../views/elements/Spinner";
 import SSOButtons from "../../views/elements/SSOButtons";
 import ServerPicker from "../../views/elements/ServerPicker";
 import AuthBody from "../../views/auth/AuthBody";
-import AuthHeader from "../../views/auth/AuthHeader";
 import AccessibleButton, { type ButtonEvent } from "../../views/elements/AccessibleButton";
 import { type ValidatedServerConfig } from "../../../utils/ValidatedServerConfig";
 import { filterBoolean } from "../../../utils/arrays";
@@ -529,23 +530,34 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
         }
 
         return (
-            <AuthPage>
-                <AuthHeader disableLanguageSelector={this.props.isSyncing || this.state.busyLoggingIn} />
-                <AuthBody>
-                    <h1>
-                        {_t("action|sign_in")}
-                        {loader}
-                    </h1>
-                    {errorTextSection}
-                    {serverDeadSection}
-                    <ServerPicker
-                        serverConfig={this.props.serverConfig}
-                        onServerConfigChange={this.props.onServerConfigChange}
-                        disabled={this.isBusy()}
-                    />
-                    {this.renderLoginComponentForFlows()}
-                    {footer}
-                </AuthBody>
+            <AuthPage
+                addBlur={false}
+                backgroundStyle="linear-gradient(to top, #000000 0%,rgb(7, 6, 6) 66%,rgb(17, 20, 29) 100%)"
+                backgroundOverlay={<AsciiFishBackground />}
+            >
+                <div className="mx_SigninDev">
+                    <div className="mx_SigninDev_language">
+                        <LanguageSelector disabled={this.props.isSyncing || this.state.busyLoggingIn} />
+                    </div>
+                    <AuthBody className="mx_SigninDev_body">
+                        <h1 className="mx_SigninDev_brand">TACKYON</h1>
+                        <div className="mx_SigninDev_divider" aria-hidden="true" />
+                        <p className="mx_SigninDev_tagline">the disenshittification of Discord</p>
+                        <h2 className="mx_SigninDev_title">
+                            {_t("action|sign_in")}
+                            {loader}
+                        </h2>
+                        {errorTextSection}
+                        {serverDeadSection}
+                        <ServerPicker
+                            serverConfig={this.props.serverConfig}
+                            onServerConfigChange={this.props.onServerConfigChange}
+                            disabled={this.isBusy()}
+                        />
+                        {this.renderLoginComponentForFlows()}
+                        {footer}
+                    </AuthBody>
+                </div>
             </AuthPage>
         );
     }

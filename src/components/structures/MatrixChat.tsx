@@ -1115,7 +1115,9 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
 
     private viewSomethingBehindModal(): void {
         if (this.state.view !== Views.LOGGED_IN) {
-            this.viewWelcome();
+            if (this.state.view === Views.LOADING) {
+                this.viewWelcome();
+            }
             return;
         }
 
@@ -1858,6 +1860,9 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
 
     public showScreen(screen: string, params?: { [key: string]: any }): void {
         logger.debug(`showScreen ${screen}`);
+        if (screen.toLowerCase() === "signin-dev") {
+            screen = "login";
+        }
 
         const cli = MatrixClientPeg.get();
         const isLoggedOutOrGuest = !cli || cli.isGuest();

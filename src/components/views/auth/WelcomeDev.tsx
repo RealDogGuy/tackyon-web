@@ -24,8 +24,7 @@ export default class WelcomeDev extends React.PureComponent<EmptyObject> {
         let pageUrl: string | undefined;
         if (pagesConfig) {
             const welcomeDevUrl = (pagesConfig as any).get?.("welcome_dev_url");
-            const welcomeUrl = pagesConfig.get("welcome_url");
-            pageUrl = typeof welcomeDevUrl === "string" ? welcomeDevUrl : welcomeUrl;
+            pageUrl = typeof welcomeDevUrl === "string" ? welcomeDevUrl : undefined;
         }
 
         const replaceMap: Record<string, string> = {
@@ -46,7 +45,7 @@ export default class WelcomeDev extends React.PureComponent<EmptyObject> {
         return (
             <AuthPage
                 addBlur={false}
-                backgroundStyle="linear-gradient(to top, #000000 0%, #010101 66%, #0f1118 100%)"
+                backgroundStyle="linear-gradient(to top, #000000 0%,rgb(7, 6, 6) 66%,rgb(17, 20, 29) 100%)"
                 backgroundOverlay={<AsciiFishBackground />}
             >
                 <div
