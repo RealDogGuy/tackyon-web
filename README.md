@@ -8,24 +8,6 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=element-web&metric=bugs)](https://sonarcloud.io/summary/new_code?id=element-web)
 
 
-How to run
-Fresh setup on Windows
-
-Install Node.js LTS from https://nodejs.org (includes npm).
-Open PowerShell as normal user.
-Install pnpm globally:
-npm install -g pnpmpnpm -v
-Run this project
-cd C:\path\to\tackyon-webpnpm installCopy-Item config.sample.json config.jsonpnpm start
-Open: http://127.0.0.1:8080/
-Test commands on Windows
-pnpm testpnpm run test:playwright
-Notes
-This repo expects modern Node (>=22.18), so use a recent LTS/newer Node.
-If script execution policy errors appear in PowerShell, run once:
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-If you prefer Command Prompt instead of PowerShell, I can give the exact cmd.exe equivalents too.
-
 # Element
 
 Element (formerly known as Vector and Riot) is a Matrix web client built using the [Matrix
