@@ -23,6 +23,7 @@ interface IProps {
     addBlur?: boolean;
     backgroundStyle?: React.CSSProperties["background"];
     disableScroll?: boolean;
+    backgroundOverlay?: React.ReactNode;
 }
 
 export default class AuthPage extends React.PureComponent<React.PropsWithChildren<IProps>> {
@@ -90,6 +91,7 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
 
         return (
             <div className="mx_AuthPage" style={pageStyle}>
+                {this.props.backgroundOverlay}
                 <div className={modalClasses} style={modalStyle}>
                     {modalBlur}
                     <main

@@ -11,6 +11,7 @@ import { type EmptyObject } from "matrix-js-sdk/src/matrix";
 
 import SdkConfig from "../../../SdkConfig";
 import AuthPage from "./AuthPage";
+import AsciiFishBackground from "./AsciiFishBackground";
 import SettingsStore from "../../../settings/SettingsStore";
 import { UIFeature } from "../../../settings/UIFeature";
 import LanguageSelector from "./LanguageSelector";
@@ -22,7 +23,9 @@ export default class WelcomeDev extends React.PureComponent<EmptyObject> {
         const pagesConfig = SdkConfig.getObject("embedded_pages");
         let pageUrl: string | undefined;
         if (pagesConfig) {
-            pageUrl = pagesConfig.get("welcome_dev_url") ?? pagesConfig.get("welcome_url");
+            const welcomeDevUrl = (pagesConfig as any).get?.("welcome_dev_url");
+            const welcomeUrl = pagesConfig.get("welcome_url");
+            pageUrl = typeof welcomeDevUrl === "string" ? welcomeDevUrl : welcomeUrl;
         }
 
         const replaceMap: Record<string, string> = {
@@ -41,7 +44,11 @@ export default class WelcomeDev extends React.PureComponent<EmptyObject> {
         }
 
         return (
-            <AuthPage addBlur={false} backgroundStyle="linear-gradient(to bottom, #0f1118 0%, #010101 50%, #000000 100%)">
+            <AuthPage
+                addBlur={false}
+                backgroundStyle="linear-gradient(to top, #000000 0%, #010101 66%, #0f1118 100%)"
+                backgroundOverlay={<AsciiFishBackground />}
+            >
                 <div
                     className={classNames("mx_Welcome", {
                         mx_WelcomePage_registrationDisabled: !SettingsStore.getValue(UIFeature.Registration),
