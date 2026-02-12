@@ -21,6 +21,8 @@ interface IProps {
      * disabled.  Defaults to `true`.
      */
     addBlur?: boolean;
+    backgroundStyle?: React.CSSProperties["background"];
+    disableScroll?: boolean;
 }
 
 export default class AuthPage extends React.PureComponent<React.PropsWithChildren<IProps>> {
@@ -47,8 +49,10 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
     }
 
     public render(): React.ReactElement {
+        const background = this.props.backgroundStyle ?? `center/cover fixed url(${AuthPage.getWelcomeBackgroundUrl()})`;
         const pageStyle = {
-            background: `center/cover fixed url(${AuthPage.getWelcomeBackgroundUrl()})`,
+            background,
+            overflow: this.props.disableScroll ? "hidden" : undefined,
         };
 
         const modalStyle: React.CSSProperties = {

@@ -97,6 +97,9 @@ enum Views {
     // we are showing the welcome view
     WELCOME,
 
+    // we are showing the welcome dev view
+    WELCOME_DEV,
+
     // we are showing the login view
     LOGIN,
 

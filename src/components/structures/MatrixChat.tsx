@@ -87,6 +87,7 @@ import CreateRoomDialog from "../views/dialogs/CreateRoomDialog";
 import IncomingSasDialog from "../views/dialogs/IncomingSasDialog";
 import CompleteSecurity from "./auth/CompleteSecurity";
 import Welcome from "../views/auth/Welcome";
+import WelcomeDev from "../views/auth/WelcomeDev";
 import ForgotPassword from "./auth/ForgotPassword";
 import E2eSetup from "./auth/E2eSetup";
 import Registration from "./auth/Registration";
@@ -146,7 +147,16 @@ import { ModuleApi } from "../../modules/Api.ts";
 // legacy export
 export { default as Views } from "../../Views";
 
-const AUTH_SCREENS = ["register", "mobile_register", "login", "forgot_password", "start_sso", "start_cas", "welcome"];
+const AUTH_SCREENS = [
+    "register",
+    "mobile_register",
+    "login",
+    "forgot_password",
+    "start_sso",
+    "start_cas",
+    "welcome",
+    "welcome-dev",
+];
 
 // Actions that are redirected through the onboarding process prior to being
 // re-dispatched. NOTE: some actions are non-trivial and would require
@@ -840,6 +850,9 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             case "view_welcome_page":
                 this.viewWelcome();
                 break;
+            case "view_welcome_dev_page":
+                this.viewWelcomeDev();
+                break;
             case Action.ViewHomePage:
                 this.viewHome(payload.justRegistered);
                 break;
@@ -1119,6 +1132,16 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             view: Views.WELCOME,
         });
         this.notifyNewScreen("welcome");
+    }
+
+    private viewWelcomeDev(): void {
+        if (shouldUseLoginForWelcome(SdkConfig.get())) {
+            return this.viewLogin();
+        }
+        this.setStateForNewView({
+            view: Views.WELCOME_DEV,
+        });
+        this.notifyNewScreen("welcome-dev");
     }
 
     private viewLogin(otherState?: any): void {
@@ -1908,6 +1931,10 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             dis.dispatch({
                 action: "view_welcome_page",
             });
+        } else if (screen === "welcome-dev") {
+            dis.dispatch({
+                action: "view_welcome_dev_page",
+            });
         } else if (screen === "home") {
             dis.dispatch({
                 action: Action.ViewHomePage,
@@ -2227,6 +2254,8 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
             }
         } else if (this.state.view === Views.WELCOME) {
             view = <Welcome />;
+        } else if (this.state.view === Views.WELCOME_DEV) {
+            view = <WelcomeDev />;
         } else if (this.state.view === Views.REGISTER && SettingsStore.getValue(UIFeature.Registration)) {
             const email = ThreepidInviteStore.instance.pickBestInvite()?.toEmail;
             view = (
