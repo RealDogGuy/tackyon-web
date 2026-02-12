@@ -547,15 +547,17 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
                             {_t("action|sign_in")}
                             {loader}
                         </h2>
-                        {errorTextSection}
-                        {serverDeadSection}
-                        <ServerPicker
-                            serverConfig={this.props.serverConfig}
-                            onServerConfigChange={this.props.onServerConfigChange}
-                            disabled={this.isBusy()}
-                        />
-                        {this.renderLoginComponentForFlows()}
-                        {footer}
+                        <div className="mx_SigninDev_formShell">
+                            {errorTextSection}
+                            {serverDeadSection}
+                            <ServerPicker
+                                serverConfig={this.props.serverConfig}
+                                onServerConfigChange={this.props.onServerConfigChange}
+                                disabled={this.isBusy()}
+                            />
+                            {this.renderLoginComponentForFlows()}
+                            {footer}
+                        </div>
                     </AuthBody>
                 </div>
             </AuthPage>

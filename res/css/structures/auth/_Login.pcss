@@ -137,8 +137,9 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     color: rgba(255, 255, 255, 0.62);
 }
 
-.mx_SigninDev_body.mx_AuthBody {
+.mx_SigninDev .mx_AuthBody.mx_SigninDev_body {
     width: min(540px, 100%);
+    max-width: 540px;
     margin: 0;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -146,6 +147,94 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
     padding: 26px 18px 14px;
     text-align: left;
+    color: #f1f1f1;
+    font-family: "Azeret Mono", Inter, sans-serif;
+    font-size: 12px;
+
+    h1 {
+        color: #fff;
+    }
+
+    h2 {
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    a:link,
+    a:hover,
+    a:visited {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        color: rgba(255, 255, 255, 0.92);
+    }
+
+    .mx_Field label {
+        color: rgba(255, 255, 255, 0.66);
+    }
+
+    .mx_Field input,
+    .mx_Field select {
+        color: rgba(255, 255, 255, 0.92);
+        background-color: rgba(7, 8, 11, 0.35);
+    }
+
+    .mx_Field_labelAlwaysTopLeft label,
+    .mx_Field select + label,
+    .mx_Field input:focus + label,
+    .mx_Field input:not(:placeholder-shown) + label,
+    .mx_Field textarea:focus + label,
+    .mx_Field textarea:not(:placeholder-shown) + label {
+        background-color: rgba(8, 9, 12, 0.79);
+    }
+
+    .mx_Login_submit {
+        height: auto;
+    }
+
+    .mx_Login_type_container {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .mx_Dropdown {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .mx_Dropdown_arrow {
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    .mx_Dropdown_menu {
+        background-color: rgba(8, 9, 12, 0.95);
+
+        .mx_Dropdown_option_highlight {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+    }
+}
+
+/* Override the default modal container when inside SigninDev */
+.mx_AuthPage_modal:has(.mx_SigninDev) {
+    background-color: transparent;
+    margin: 0 auto;
+    min-height: calc(100vh - 84px);
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Override the auth footer when SigninDev login is active */
+.mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter {
+    font-family: "Azeret Mono", Inter, sans-serif;
+    text-align: center;
+}
+
+.mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter a {
+    color: rgba(255, 255, 255, 0.62);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .mx_SigninDev_brand {
@@ -215,6 +304,49 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 
 .mx_SigninDev_title {
     margin: 0 0 14px;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: "Azeret Mono", Inter, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.mx_SigninDev_formShell {
+    margin-top: 10px;
+}
+
+.mx_SigninDev .mx_Login_submit {
+    min-height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #020202;
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    font-family: "Azeret Mono", Inter, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.mx_SigninDev .mx_Login_submit:hover {
+    filter: brightness(1.08);
+}
+
+.mx_SigninDev .mx_Login_error {
+    font-family: "Azeret Mono", Inter, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+}
+
+.mx_SigninDev .mx_AuthBody_paddedFooter {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.mx_SigninDev .mx_AuthBody_paddedFooter_title,
+.mx_SigninDev .mx_AuthBody_paddedFooter_subtitle {
+    font-family: "Azeret Mono", Inter, sans-serif;
 }
 
 .mx_SigninDev .mx_ServerPicker_server {
@@ -234,7 +366,7 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
         padding: 16px;
     }
 
-    .mx_SigninDev_body.mx_AuthBody {
+    .mx_SigninDev .mx_AuthBody.mx_SigninDev_body {
         padding: 20px 14px 14px;
     }
 

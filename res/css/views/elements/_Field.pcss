@@ -171,3 +171,65 @@ Please see LICENSE files in the repository root for full details.
 .mx_Field .mx_CountryDropdown {
     width: fit-content;
 }
+
+.mx_SigninDev .mx_Field {
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    background: rgba(8, 9, 12, 0.65);
+    margin: 10px 0;
+}
+
+.mx_SigninDev .mx_Field_prefix {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mx_SigninDev .mx_Field_postfix {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mx_SigninDev .mx_Field input,
+.mx_SigninDev .mx_Field select,
+.mx_SigninDev .mx_Field textarea {
+    border-radius: 12px;
+    background: rgba(7, 8, 11, 0.35);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: "Azeret Mono", Inter, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    padding: 12px 12px;
+}
+
+.mx_SigninDev .mx_Field:focus-within {
+    border-color: rgba(255, 255, 255, 0.46);
+}
+
+.mx_SigninDev .mx_Field label {
+    color: rgba(255, 255, 255, 0.66);
+    font-family: "Azeret Mono", Inter, sans-serif;
+}
+
+.mx_SigninDev .mx_Field_labelAlwaysTopLeft label,
+.mx_SigninDev .mx_Field select + label,
+.mx_SigninDev .mx_Field input:focus + label,
+.mx_SigninDev .mx_Field input:not(:placeholder-shown) + label,
+.mx_SigninDev .mx_Field textarea:focus + label,
+.mx_SigninDev .mx_Field textarea:not(:placeholder-shown) + label {
+    background: rgba(8, 9, 12, 0.79);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mx_SigninDev .mx_Field input:focus + label,
+.mx_SigninDev .mx_Field select:focus + label,
+.mx_SigninDev .mx_Field textarea:focus + label {
+    color: #fff;
+}
+
+.mx_SigninDev .mx_Field_invalid.mx_Field,
+.mx_SigninDev .mx_Field_invalid.mx_Field:focus-within {
+    border-color: $alert;
+}
+
+.mx_SigninDev .mx_Field_valid.mx_Field,
+.mx_SigninDev .mx_Field_valid.mx_Field:focus-within {
+    border-color: rgba(120, 226, 183, 0.8);
+}
