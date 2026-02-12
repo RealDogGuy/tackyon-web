@@ -54,7 +54,7 @@ jobs:
                 voip|element_call
                 error|invalid_json
                 error|misconfigured
-                welcome_to_element
+                welcome_title
                 devtools|settings|elementCallUrl
                 labs|sliding_sync_description
 

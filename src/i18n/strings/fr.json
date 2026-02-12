@@ -4006,7 +4006,7 @@
         "you_are_presenting": "Vous êtes à l’écran"
     },
     "web_default_device_name": "%(appName)s : %(browserName)s pour %(osName)s",
-    "welcome_to_element": "Tackyon",
+    "welcome_title": "TACKYON",
     "widget": {
         "added_by": "Widget ajouté par",
         "capabilities_dialog": {

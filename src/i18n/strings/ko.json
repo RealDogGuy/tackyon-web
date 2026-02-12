@@ -3902,7 +3902,7 @@
         "you_are_presenting": "화면을 공유 중입니다."
     },
     "web_default_device_name": "%(appName)s: %(browserName)s on %(osName)s",
-    "welcome_to_element": "Tackyon",
+    "welcome_title": "TACKYON",
     "widget": {
         "added_by": "위젯을 추가했습니다",
         "capabilities_dialog": {

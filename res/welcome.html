@@ -3,6 +3,15 @@
  * voodoo where we have to set display: none by default
  */
 
+    @font-face {
+        font-family: "Sora";
+        src: url("themes/tackyon/fonts/Sora-Regular.woff2") format("woff2"),
+             url("themes/tackyon/fonts/Sora-Regular.ttf") format("truetype");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+    }
+
     .mx_Header_title::after {
         content: "";
     }
@@ -98,8 +107,9 @@
     }
 
     .mx_Header_title {
+        font-family: "Sora", Inter, sans-serif;
         font-size: 24px;
-        font-weight: 600;
+        font-weight: 400;
         margin: 20px 0 0;
     }
 
@@ -168,7 +178,7 @@ we don't have an account and should hide them. No account == no guest account ei
     <a href="https://element.io" target="_blank" rel="noopener">
         <img src="$logoUrl" alt="$brand" class="mx_Logo" />
     </a>
-    <h1 class="mx_Header_title">_t("welcome_to_element")</h1>
+    <h1 class="mx_Header_title">_t("welcome_title")</h1>
     <!-- XXX: Our translations system isn't smart enough to recognize variables in the HTML, so we manually do it -->
     <h2 class="mx_Header_subtitle">_t("powered_by_matrix_with_logo")</h2>
     <div class="mx_ButtonGroup">
