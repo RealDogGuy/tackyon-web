@@ -17,7 +17,7 @@ import { messageForConnectionError, messageForLoginError } from "../../../utils/
 import AutoDiscoveryUtils from "../../../utils/AutoDiscoveryUtils";
 import AuthPage from "../../views/auth/AuthPage";
 import AsciiFishBackground from "../../views/auth/AsciiFishBackground";
-import LanguageSelector from "../../views/auth/LanguageSelector";
+
 import PlatformPeg from "../../../PlatformPeg";
 import SettingsStore from "../../../settings/SettingsStore";
 import { UIFeature } from "../../../settings/UIFeature";
@@ -536,9 +536,6 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
                 backgroundOverlay={<AsciiFishBackground />}
             >
                 <div className="mx_SigninDev">
-                    <div className="mx_SigninDev_language">
-                        <LanguageSelector disabled={this.props.isSyncing || this.state.busyLoggingIn} />
-                    </div>
                     <AuthBody className="mx_SigninDev_body">
                         <h1 className="mx_SigninDev_brand">TACKYON</h1>
                         <div className="mx_SigninDev_divider" aria-hidden="true" />
