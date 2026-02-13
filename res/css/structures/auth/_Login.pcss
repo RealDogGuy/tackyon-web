@@ -111,8 +111,9 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 .mx_SigninDev_language {
     width: min(540px, 100%);
     display: flex;
-    justify-content: flex-end;
-    margin: 0 auto 10px;
+    justify-content: center;
+    margin: 12px auto 0;
+    order: 2;
 }
 
 .mx_SigninDev_language .mx_AuthBody_language {
@@ -150,6 +151,7 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     color: #f1f1f1;
     font-family: "Azeret Mono", Inter, sans-serif;
     font-size: 12px;
+    order: 1;
 
     h1 {
         color: #fff;
@@ -232,12 +234,29 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 }
 
 .mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter a {
+    display: none;
     color: rgba(255, 255, 255, 0.62);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
+.mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter a[href*="github.com"] {
+    display: inline-block;
+    margin: 0;
+}
+
 .mx_SigninDev_brand {
+    margin: 0;
+    font-family: "Sora", Inter, sans-serif;
+    font-size: 68px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.mx_SigninDev .mx_AuthBody.mx_SigninDev_body .mx_SigninDev_brand {
     margin: 0;
     font-family: "Sora", Inter, sans-serif;
     font-size: 68px;
@@ -371,6 +390,10 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     }
 
     .mx_SigninDev_brand {
+        font-size: 44px;
+    }
+
+    .mx_SigninDev .mx_AuthBody.mx_SigninDev_body .mx_SigninDev_brand {
         font-size: 44px;
     }
 }
