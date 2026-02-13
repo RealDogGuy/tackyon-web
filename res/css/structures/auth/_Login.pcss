@@ -118,7 +118,8 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 
 .mx_SigninDev_language .mx_AuthBody_language {
     width: auto;
-    margin: 0;
+    margin: 0 auto 8px;
+    font-family: "Azeret Mono", Inter, sans-serif;
 }
 
 .mx_SigninDev_language .mx_Dropdown_input {
@@ -229,8 +230,8 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 
 /* Override the auth footer when SigninDev login is active */
 .mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter {
-    font-family: "Azeret Mono", Inter, sans-serif;
     text-align: center;
+    font-family: "Azeret Mono", Inter, sans-serif;
 }
 
 .mx_AuthPage:has(.mx_SigninDev) > .mx_AuthFooter a {
@@ -281,7 +282,7 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
 }
 
 .mx_SigninDev_divider::before {
-    content: "[--------------------------------------------------------]";
+    content: "[---------------------------------------------------]";
 }
 
 .mx_SigninDev_divider::after {
@@ -289,7 +290,7 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     position: absolute;
     top: 0;
     left: 0;
-    animation: mx_SigninDevDividerScan 9s steps(57, end) infinite;
+    animation: mx_SigninDevDividerScan 9s steps(55, end) infinite;
 }
 
 @keyframes mx_SigninDevDividerScan {
@@ -298,13 +299,13 @@ div.mx_AccessibleButton_kind_link.mx_Login_forgot {
     }
 
     to {
-        transform: translateX(56ch);
+        transform: translateX(54ch);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .mx_SigninDev_divider::before {
-        content: ">--------------------------------------------------------]";
+        content: ">---------------------------------------------------]";
     }
 
     .mx_SigninDev_divider::after {

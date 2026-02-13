@@ -542,7 +542,6 @@ export default class LoginComponent extends React.PureComponent<IProps, IState> 
                     <AuthBody className="mx_SigninDev_body">
                         <h1 className="mx_SigninDev_brand">TACKYON</h1>
                         <div className="mx_SigninDev_divider" aria-hidden="true" />
-                        <p className="mx_SigninDev_tagline">the disenshittification of Discord</p>
                         <h2 className="mx_SigninDev_title">
                             {_t("action|sign_in")}
                             {loader}
