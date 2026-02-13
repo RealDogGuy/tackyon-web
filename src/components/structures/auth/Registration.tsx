@@ -30,6 +30,7 @@ import AutoDiscoveryUtils from "../../../utils/AutoDiscoveryUtils";
 import * as Lifecycle from "../../../Lifecycle";
 import { type IMatrixClientCreds, MatrixClientPeg } from "../../../MatrixClientPeg";
 import AuthPage from "../../views/auth/AuthPage";
+import AsciiFishBackground from "../../views/auth/AsciiFishBackground";
 import Login, { type OidcNativeFlow } from "../../../Login";
 import dis from "../../../dispatcher/dispatcher";
 import SSOButtons from "../../views/elements/SSOButtons";
@@ -37,10 +38,8 @@ import ServerPicker from "../../views/elements/ServerPicker";
 import RegistrationForm from "../../views/auth/RegistrationForm";
 import AccessibleButton, { type ButtonEvent } from "../../views/elements/AccessibleButton";
 import AuthBody from "../../views/auth/AuthBody";
-import AuthHeader from "../../views/auth/AuthHeader";
 import InteractiveAuth, { type InteractiveAuthCallback } from "../InteractiveAuth";
 import Spinner from "../../views/elements/Spinner";
-import { AuthHeaderDisplay } from "./header/AuthHeaderDisplay";
 import { AuthHeaderProvider } from "./header/AuthHeaderProvider";
 import SettingsStore from "../../../settings/SettingsStore";
 import { type ValidatedServerConfig } from "../../../utils/ValidatedServerConfig";
@@ -273,20 +272,13 @@ export default class Registration extends React.Component<IProps, IState> {
                 });
             } else if (e instanceof MatrixError && (e.httpStatus === 403 || e.errcode === "M_FORBIDDEN")) {
                 // Check for 403 or M_FORBIDDEN, Synapse used to send 403 M_UNKNOWN but now sends 403 M_FORBIDDEN.
-                // At this point registration is pretty much disabled, but before we do that let's
-                // quickly check to see if the server supports SSO instead. If it does, we'll send
-                // the user off to the login page to figure their account out.
-                if (ssoFlow) {
-                    // Redirect to login page - server probably expects SSO only
-                    dis.dispatch({ action: "start_login" });
-                } else {
-                    this.setState({
-                        serverErrorIsFatal: true, // fatal because user cannot continue on this server
-                        errorText: _t("auth|registration_disabled"),
-                        // add empty flows array to get rid of spinner
-                        flows: [],
-                    });
-                }
+                // Registration is disabled on this server -- show an error instead of redirecting.
+                this.setState({
+                    serverErrorIsFatal: true, // fatal because user cannot continue on this server
+                    errorText: _t("auth|registration_disabled"),
+                    // add empty flows array to get rid of spinner
+                    flows: [],
+                });
             } else {
                 logger.log("Unable to query for supported registration methods.", e);
                 this.setState({
@@ -737,26 +729,23 @@ export default class Registration extends React.Component<IProps, IState> {
         } else {
             body = (
                 <Fragment>
-                    <div className="mx_Register_mainContent">
-                        <AuthHeaderDisplay
-                            title={_t("auth|create_account_title")}
-                            serverPicker={
-                                <ServerPicker
-                                    title={_t("auth|server_picker_title_registration")}
-                                    dialogTitle={_t("auth|server_picker_dialog_title")}
-                                    serverConfig={this.props.serverConfig}
-                                    onServerConfigChange={
-                                        this.state.doingUIAuth ? undefined : this.props.onServerConfigChange
-                                    }
-                                />
+                    <h1 className="mx_SigninDev_brand">TACKYON</h1>
+                    <div className="mx_SigninDev_divider" aria-hidden="true" />
+                    <h2 className="mx_SigninDev_title">
+                        {_t("auth|create_account_title")}
+                    </h2>
+                    <div className="mx_SigninDev_formShell">
+                        {errorText}
+                        {serverDeadSection}
+                        <ServerPicker
+                            title={_t("auth|server_picker_title_registration")}
+                            dialogTitle={_t("auth|server_picker_dialog_title")}
+                            serverConfig={this.props.serverConfig}
+                            onServerConfigChange={
+                                this.state.doingUIAuth ? undefined : this.props.onServerConfigChange
                             }
-                        >
-                            {errorText}
-                            {serverDeadSection}
-                        </AuthHeaderDisplay>
+                        />
                         {this.renderRegisterComponent()}
-                    </div>
-                    <div className="mx_Register_footerActions">
                         {goBack}
                         {signIn}
                     </div>
@@ -771,10 +760,17 @@ export default class Registration extends React.Component<IProps, IState> {
             );
         }
         return (
-            <AuthPage>
-                <AuthHeader />
+            <AuthPage
+                addBlur={false}
+                backgroundStyle="linear-gradient(to top, #000000 0%,rgb(7, 6, 6) 66%,rgb(17, 20, 29) 100%)"
+                backgroundOverlay={<AsciiFishBackground />}
+            >
                 <AuthHeaderProvider>
-                    <AuthBody flex>{body}</AuthBody>
+                    <div className="mx_SigninDev">
+                        <AuthBody className="mx_SigninDev_body">
+                            {body}
+                        </AuthBody>
+                    </div>
                 </AuthHeaderProvider>
             </AuthPage>
         );
